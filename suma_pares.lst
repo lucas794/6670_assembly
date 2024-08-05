@@ -1,0 +1,51 @@
+(ARCTools Version 2.1.2)
+ HexLoc     DecLoc    MachWord   Label        Instruction                Comment
+                                              .org 2048                  
+                                                                         
+00000800  0000002048  82002860  main:         add %r0, 2144, %r1         ! cargo el puntero del array a r1   
+00000804  0000002052  d400286c                ld [2156], %r10            ! largo en r10
+00000808  0000002056  a81d0014                xor %r20, %r20, %r20       ! Inicializo r20 con el contador de pares
+0000080c  0000002060  8a194005                xor %r5, %r5, %r5          ! Inicializo r5 en 0
+00000810  0000002064  aa1d4015                xor %r21, %r21, %r21       ! inicializo %r21 en 0
+00000814  0000002068  be03c000                add %r15, %r0, %r31        
+00000818  0000002072  40000001                call 1                     
+                                                                         
+0000081c  0000002076            sumar_pares:                             
+00000820  0000002080  808a800a  loop:         andcc %r10, %r10, %r0      
+00000824  0000002084  02800008                be 8                       
+                                                                         
+00000828  0000002088  9422a004                sub %r10, 4, %r10          
+                                                                         
+0000082c  0000002092  ca00400a                ld %r1, %r10, %r5          ! valor del arreglo en r5
+00000830  0000002096  ac000005                add %r0, %r5, %r22         ! copia de temp valor
+00000834  0000002100  8b29601f                sll %r5, 31, %r5           !Shifteo 31 lugares a la izquierda
+00000838  0000002104  80897fff                andcc %r5, -1, %r0         
+0000083c  0000002108  02800005                be 5                       
+                                                                         
+00000840  0000002112  10bffff8                ba -8                      
+                                                                         
+00000844  0000002116            finalizar:                               
+00000848  0000002120  0b000000                sethi 0, %r5               
+0000084c  0000002124  81c7e004                jmpl %r31, 4, %r0          
+                                                                         
+00000850  0000002128            sumarpar:                                
+00000854  0000002132  a8052001                add %r20, 1, %r20          
+00000858  0000002136  aa054016                add %r21, %r22, %r21       
+0000085c  0000002140  81c3e004                jmpl %r15, 4, %r0          
+                                                                         
+00000860  0000002144  00000002  array:                                   
+00000864  0000002148  00000005                                           
+00000868  0000002152  0000000a                                           
+                                                                         
+0000086c  0000002156  0000000c  largo:                                   
+                                                                         
+                                                                         
+
+--- Symbol Table ---
+main: 2048
+loop: 2080
+sumar_pares: 2076
+largo: 2156
+sumarpar: 2128
+finalizar: 2116
+array: 2144

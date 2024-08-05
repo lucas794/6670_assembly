@@ -1,0 +1,25 @@
+(ARCTools Version 2.1.2)
+ HexLoc     DecLoc    MachWord   Label        Instruction                Comment
+                                              .org 2048                  
+                                                                         
+00000800  0000002048  bd0321cc  NUMERO:                                  
+                                                                         
+00000804  0000002052            array:        .dwb 5                     
+                                                                         
+                                                                         
+00000818  0000002072            main:                                    
+                                                                         !ld [NUMERO], %r1
+                                                                         
+                                              .equ BD032h                
+                                              .equ 1CCh                  
+0000081c  0000002076  070bd032                sethi 774194, %r3          
+00000820  0000002080  8728e002                sll %r3, 2, %r3            
+00000824  0000002084  8600e1cc                add %r3, 460, %r3          !cargue la constante en r3
+                                                                         
+
+--- Symbol Table ---
+A: 774194
+main: 2072
+NUMERO: 2048
+B: 460
+array: 2052
